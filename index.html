@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing E-com</title>
+    <link rel="icon" href="arm-wrestling.png">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="outside-text">
+        <h2>Buy Now - Buy Now - Buy Now - Buy Now - Buy Now - </h2>
+    </div>
+
+
+
+    <!-------main---------->
+
+    <main>
+        <header>
+            <nav class="menu">
+                <div class="strokes"></div>
+                <div class="strokes"></div>
+                <div class="strokes"></div>
+             </nav>
+             <div class="fullscreenmenu">
+                <ul>  
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+              
+                    <li>
+                        <a href="#">Producto</a>
+                    </li>
+              
+                    <li>
+                        <a href="#">Contacto</a>
+                    </li>
+                </ul>
+              </div>
+            <!-------menu hamburgesa--------->
+            <div class="logo">
+                <div class="center">
+                    <img src="bra.png">
+                    <div class="pulse"></div>
+
+                </div>
+            </div>
+            <div class="social">
+                <a href="#"><span>Twitter</span></a>
+                <a href="#"><span>Facebook</span></a>
+                <a href="#"><span>Youtube</span></a>
+                <a href="#"><span>Instagram</span></a>
+            </div>
+
+        </header>
+
+
+        <div class="content">
+            <div class="text">
+                <h1>Zapatilla Deportiva</h1>
+                <div class="line">
+
+                    <p>
+                        <span> Lorem ipsum dolor sit amet consectetur adipisicing elit.</span></br></br><span> Unde
+                            beatae recusandae enim.</span>
+                    </p>
+                </div>
+                <a href="#" class="btn"><span>Ver Producto</span></a>
+            </div>
+
+
+            <div class="video">
+
+                <video autoplay loop muted>
+                    <source src="video.mp4" type="video/mp4">
+                </video>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+
+
+
+
+    <!-------cursor---------->
+    <div id="cursor"></div>
+
+    <!-------codigo plugins---------->
+
+
+    <!-------codigo__cursor--- 2------->
+
+    <script>
+
+        (function () {
+
+            const links = document.querySelectorAll('.social');
+            const cursor = document.querySelector('#cursor')
+
+            const animateIt = function (e) {
+                const span = this.querySelector('span');
+                const { offsetX: x, offsetY: y } = e,
+                    { offsetWidth: width, offsetHeight: height } = this,
+
+                    move = 25,
+                    xMove = x / width * (move * 2) - move,
+                    yMove = y / height * (move * 2) - move;
+
+                span.style.transform = `translate(${xMove}px, ${yMove}px)`;
+                if (e.type === 'mouseleave') span.style.transform = ''
+            };
+
+            const editCursor = e => {
+                const { clientX: x, clientY: y } = e;
+                cursor.style.left = x + 'px';
+                cursor.style.top = y + 'px';
+            }
+
+            links.forEach(link => link.addEventListener('mousemove', animateIt));
+            links.forEach(link => link.addEventListener('mouseleave', animateIt));
+            window.addEventListener('mousemove', editCursor);
+
+        })()
+
+    </script>
+
+    <!-------texto revelador--- 2------->
+
+    <script>
+        const textrev = gsap.timeline();
+
+        textrev.from(".line span", 1.8, {
+            y: 200,
+            ease: "power4.out",
+            delay: 1,
+            skewY: 10,
+            stagger: {
+                amount: 0.4,
+            },
+        });
+    </script>
+
+    <!-------hamburgesa menu---------->
+    <script>
+(function () {
+  "use strict";
+    
+    var fullscreenmenu = document.querySelector(".fullscreenmenu");
+    
+    var strokes = document.querySelectorAll(".strokes"),
+        icon = document.querySelector(".menu"),
+        fullscreenmenu = document.querySelector(".fullscreenmenu");
+  
+    function transformStart() {
+
+        strokes[0].classList.toggle("animate0")
+        strokes[1].classList.toggle("hide");
+        strokes[2].classList.toggle("animate2");
+        fullscreenmenu.classList.toggle("show");
+
+    }
+    
+    icon.addEventListener("click", transformStart);
+
+})();
+    </script>
+
+
+</body>
+
+</html>
